@@ -9,7 +9,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "netlify": "nuxt generate && netlify deploy --dir=dist --prod"
   },
   "dependencies": {
     "@nuxtjs/moment": "^1.6.0",
