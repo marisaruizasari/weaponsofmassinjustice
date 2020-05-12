@@ -279,7 +279,7 @@
       height: 100vh;
       display: flex;
       flex-direction: row; 
-      align-items: center;
+      align-items: flex-start;
       padding: 10vw;
       justify-content: center;
       font-family: 'Merriweather', serif;
@@ -337,6 +337,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+      align-content: flex-start;
       width: 100vw;
   }
   
@@ -520,10 +521,7 @@
       font-size: 30px;
       font-family: 'Merriweather', serif;
   }
-  
-  #citi-googleearth {
-      display: none;
-  }
+
   
   
   // styles from old index.vue  ---------------------------------------------->
@@ -862,4 +860,22 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+
+  #small-mult-legend-holder {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #small-mult-legend {
+    width: 35%;
+    min-width: 350px;
+    margin-bottom: 60px;
+    background-color: rgb(43, 54, 58);
+    border-radius: 15px;
+    padding: 20px 40px;
   }

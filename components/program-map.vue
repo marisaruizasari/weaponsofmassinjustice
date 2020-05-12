@@ -75,7 +75,6 @@
 <script>
 
 import * as d3 from "d3"
-import usCounties from '~/static/us_counties_rates.json'
 import usStates from '~/static/states_firearm_homicide.json'
 import programs from '~/static/program_cities_geo.json'
 

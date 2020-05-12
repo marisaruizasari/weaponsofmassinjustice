@@ -19,7 +19,7 @@
                 <span class="first-character">A</span>mericans are 25 times more likely to be killed by a gun than residents of countries with similar GDPs. Contrary to media portrayals and policy discussions of the gun violence crisis in the US framed around mass shootings, daily gun violence – shootings that result in the disproportionate killing of young people of color and the loss of life to suicide – make up the majority of gun deaths in the US. 
                 </p>
                 <p>
-                    Gun violence and firearm offense data have historically been used to justify the criminalization of Black and Brown youth in America. But what if the gun violence crisis was treated as a public health crisis rather than a cause for mass incarceration? This visual essay explores data on daily gun violence and documents efforts working to promote peace and collective healing.
+                    Gun violence and firearm offense data have historically been used to justify the criminalization of Black and Brown youth in America. But what if the gun violence crisis was treated as a public health crisis rather than another cause for mass incarceration? This visual essay explores data on daily gun violence and documents efforts working to promote peace and collective healing.
                 </p>
             </div>
           </div>
@@ -33,15 +33,12 @@
         @step-exit="resetContent"
         >
             <div class="graphic" slot="graphic">
-                <div v-if="currStep == '1' || currStep == '2'" id="three-intro">
+                <div v-show="currStep == '1' || currStep == '2'" id="three-intro">
                     <div class="candles-back"></div>
                     <div class="candle-group">
                         <div id="candles" :style="{bottom: candlesBot + '%'}">
                             <img width="100%" src="~assets/candles.svg" alt="candles">   
                         </div>
-                    <!-- <div id="candles" :style="{bottom: candlesBot + '%'}">
-                        <img width="100%" src="~assets/candles-final-02.svg" alt="candles">   
-                    </div> -->
                     </div>
                 </div>
                 <div  v-if="currStep == '3'" id="vid-holder">
@@ -55,7 +52,6 @@
                     <div class="br-dark"></div>
                     <div class="rel">
                       <video v-show="currStep == 'stadium video' && subStep != 'seats rearrange'" id="google-earth-video" src="~assets/citi-g-earth-lowres.mp4" muted="true" autoplay></video>
-                      <!-- <div :style="{opacity: vOp}" class="vid-cover" id="g-earth-cover"></div> -->
                       <div class="vid-cover"></div>
                       <seats :style="{opacity: stadiumOp, position: 'absolute', top: '0', left: '0', width: 'auto', height: '100%'}"></seats>
                     </div>
@@ -81,7 +77,7 @@
                     <div class="br-dark"></div>
                     <div class="line-chart-holder">
                         <line-chart id="age-break-1" :chart-data="cd.lineChartData2" :options="lineChartOptionsLabels('Gun Death Rates by Age', 'Gun deaths per 100k residents', 'Age group')" :height="500" :width="950"></line-chart>
-                         <img v-if="currStep == 'age break 2 highlight'" class="highlight-img" src="~/static/graph-highlight-2.png" alt="">
+                         <img v-if="currStep == 'age break 2'" class="highlight-img" src="~/static/graph-highlight-2.png" alt="">
                     </div>
                 </div>
                 <div v-if="currStep == 'even more' || currStep == 'peaks'">
@@ -92,6 +88,9 @@
                                     <line-chart ref="race-line-chart" :chart-data="raceChartData[index]" :options="lineChartPlainOptions" :height="100" :width="200"></line-chart>
                                 <div class="race-label c-white">{{race['race-eth']}}</div>
                             </div>
+                        </div>
+                        <div id="small-mult-legend-holder">
+                            <img id="small-mult-legend" src="~/static/small-mult-legend.png" alt="legend">
                         </div>
                     </div>
                 </div>
@@ -200,13 +199,13 @@
                 <div v-if="currStep == 'Richmond'">
                     <div class="br-dark"></div>
                     <div class="line-chart-holder">
-                      <line-chart id="richmond-chart" :chart-data="cd.richmondHomChartData" :options="lineChartOptionsLabels('Gun Homicides in Richmond, CA', 'Gun Homicides', 'Year')" :height="500" :width="950"></line-chart>
+                      <line-chart id="richmond-chart" :chart-data="cd.richmondChartData" :options="lineChartOptionsLabels('Gun Homicides in Richmond, CA', 'Gun Homicides', 'Year')" :height="500" :width="950"></line-chart>
                     </div>
                 </div>
                 <div v-if="currStep == 'Richmond2'">
                     <div class="br-dark"></div>
                     <div class="line-chart-holder">
-                      <line-chart id="richmond-chart2" :chart-data="cd.richmondCountChartData" :options="lineChartOptionsLabels('Non-fatal shootings in Richmond, CA', 'Shootings', 'Year')" :height="500" :width="950"></line-chart>
+                      <line-chart id="richmond-chart2" :chart-data="cd.richmondCountChartData" :options="lineChartOptionsLabels('Non-fatal shootings in Richmond, CA', 'Shootings', 'Year', 'no legend')" :height="500" :width="950"></line-chart>
                     </div>
                 </div>
                 <transition name="fade" tag="div">
@@ -280,7 +279,7 @@
             </div> -->
             <div class="step" data-step-no="age break">
                 <div class="step-text">
-                    But by breaking down the gun death rate by 10 year age categories, we start to see that gun violence doesn't impact all Americans equally.
+                    By breaking down the gun death rate by 10 year age categories, we start to see that gun violence doesn't impact all Americans equally.
                      <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
@@ -308,7 +307,7 @@
             </div>
             <div class="step" data-step-no="race age all">
                 <div class="step-text">
-                    The gun homicide rate for young Black Americans in particular is greater than both the gun homicide or gun suicide rate of any other age or racial/ethnic group.
+                    The gun homicide rate for young Black Americans is significantly greater than both the gun homicide or gun suicide rate of any other age or racial/ethnic group.
                     <p class="sub-text">Interact with this graph by hovering on points</p>
                 </div>
             </div>
@@ -336,30 +335,30 @@
             </div>
             <div class="step" data-step-no="arrested">
                 <div class="step-text">
-                    More broadly, Black Americans are most likely to be arrested for weapons possession, despite research showing that gun ownership is up to 12% higher amongst White Americans.
+                    More broadly, Black Americans are most likely to be arrested for weapons possession, despite research showing that gun ownership is higher amongst White Americans.
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="jailed">
                 <div class="step-text">
-                    Black Americans are also most likely to be jailed.
+                    Black Americans are also overwhelmingly most likely to be jailed.
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="still disparate">
                 <div class="step-text">
-                    And though overall incarceration rates have seen recent declines, rates remain exponentially higher for Black Americans than any other racial/ethnic group. 
+                    And though overall incarceration rates have seen recent declines, rates remain higher for non-White Americans, and in particular for men of color. 
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="criminality">
                 <div class="step-text">
-                    The statistics we just explored have historically been used to support race based theories of criminality, harmful theories that frame communities of color in the US as supporting cultures of violence. 
+                    The statistics we've just explored have historically been used to support race based theories of criminality, harmful and unsubstantiated theories that frame communities of color in the US as supporting cultures of violence. 
                 </div>
             </div>
             <div class="step" data-step-no="entire response">
                 <div class="step-text">
-                    And these theories have in turn supported law enforcement tactics treat entire communities as responsible for high rates of violence, such as heavier policing in communities of color as well as racially biased law enforcement tactics such as Stop and Frisk. 
+                    And these theories have in turn supported law enforcement tactics treat entire communities as responsible for high rates of violence, such as heavier policing in communities of color as well as racist law enforcement programs such as Stop and Frisk. 
                 </div>
             </div>
             <div class="step" data-step-no="perpetrators">
@@ -372,15 +371,13 @@
                     And that these individuals are often connected and caught in cycles of retaliatory violence.
                 </div>
             </div>
-            <div class="step" data-step-no="addressing">
+            <div class="step" data-step-no="programs" data-substep="programs-static">
                 <div class="step-text">
-                    Addressing the most pervasive forms of gun violence requires strategies that address the unique drivers of gun violence at the community level, and finding ways to address gun violence without further contributing to systems of mass incarceration and racial inequity in the US. 
+                    In response, many cities across the US have implemented local intervention strategies that work to humanize rather than criminalize those at the center of gun violence. 
+                    <p class="sub-text">Hover on a location to learn more about each program or on a county to see the gun homicide rate between 2010-2018.</p>
                 </div>
             </div>
-            <div class="step" data-step-no="local strategies">
-                <div class="step-text">
-                    Local, evidence-based gun violence reduction approaches take a new look at the drivers of gun violence and work to humanize rather than criminalize those at the center.
-                </div>
+            <div class="step" data-step-no="programs" data-substep="programs-interactive">
             </div>
             <div class="step" data-step-no="tailored support">
                 <div class="step-text">
@@ -392,27 +389,30 @@
                     These local strategies work by offering tailored support and messaging that individuals at the center of gun violence are valued and that both their safety and accountability is critical to overall community well-being.
                 </div>
             </div>
+            <div class="step" data-step-no="epidemic">
+                <div class="step-text">
+                    By framing these individuals as assets to the community, they promote peace and accountability without further contributing to systems of mass incarceration and racial inequity in the US.
+                </div>
+            </div>
             <div class="step" data-step-no="diff solutions">
                 <div class="step-text">
                     Some work independently to de-escalate potentially lethal situations while others work in partnership with law enforcement to build community trust. Others yet work out of hospitals, reaching individuals after they have been injured by a firearm to end cycles of retaliation.
                 </div>
-            </div>
-            <div class="step" data-step-no="programs" data-substep="programs-static">
-                <div class="step-text">
-                    Many cities across the US have implemented local intervention strategies. 
-                    <p class="sub-text">Hover on a location to learn more about each program or on a county to see the gun homicide rate between 2010-2018.</p>
-                </div>
-            </div>
-            <div class="step" data-step-no="programs" data-substep="programs-interactive">
             </div>
             <div class="step" data-step-no="common thread">
                 <div class="step-text">
                     The common thread amongst these strategies is that all rely on the expertise of community members and individuals who have deep personal experiences with cyclical gun violence. 
                 </div>
             </div>
+            <!-- <div class="step" data-step-no="local strategies">
+                <div class="step-text">
+                    Local, evidence-based gun violence reduction approaches take a new look at the drivers of gun violence and work to 
+                </div>
+            </div> -->
+
             <div class="step" data-step-no="Richmond">
                 <div class="step-text">
-                    And the results provide reason for consideration – Richmond, CA, at its peak labeled as one of the most deadly cities in the US, saw gun homicides decrease by over 40% in the first year of adopting its local gun violence reduction program in 2007. 
+                    And the results provide reason for consideration. Richmond, CA, at its peak labeled as one of the most deadly cities in the US, saw gun homicides decrease by over 40% after launching its local gun violence reduction program, the Office of Neighborhood Safety, in 2007. 
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
@@ -426,7 +426,12 @@
                     In Chicago, IL, the Ceasefire program decreased shootings by 38% and killings by 29% in two neighborhoods with some of the city’s highest gun violence rates.
                 </div>
             </div> -->
-            <div class="step" data-step-no="combination">
+            <!-- <div class="step" data-step-no="addressing">
+                <div class="step-text">
+                    Addressing the most pervasive forms of gun violence requires strategies that address the unique drivers of gun violence at the community level, and finding ways to address gun violence without further contributing to systems of mass incarceration and racial inequity in the US. 
+                </div>
+            </div> -->
+            <div class="step" data-step-no="addressing">
                 <div class="step-text">
                     These programs, as part of a larger integrated set of gun violence reduction strategies, show that local, community-based gun violence reduction programs can contribute meaningful solutions to America’s gun crisis, and particularly the impacts of gun violence on communities of color, without detracting from much needed policy level gun reform. 
                 </div>
@@ -438,12 +443,13 @@
             </div> -->
             <div class="step" data-step-no="media">
                 <div class="step-text">
-                    Recent movements including March For Our Lives and Black Lives Matters have done important work to bring mass shootings and police shootings to the forefront of the American sociopolitical agenda. But together these acts of gun violence still represent less than 2% of annual gun deaths in the US.
+                    Recent movements including March For Our Lives and Black Lives Matters have done powerful work to bring mass shootings and police shootings to the forefront of media and policy discussionns. 
                 </div>
             </div>
             <div class="step" data-step-no="media2">
                 <div class="step-text">
-                    What will it take to elevate daily gun violence to the national discourse on reducing gun violence? <br><br> Explore the resources below to learn more about this work being undertaken by cities and organizations around the country.
+                    So, what will it take to elevate daily gun violence to this national discourse? And how do we reckon with a gun violence crisis that disproportionately kills and criminalizes black and brown youth? 
+                    <p class="sub-text">Explore the resources below to learn more about this work being undertaken by cities and organizations around the country.</p>
                 </div>
             </div>
             <div class="step" data-step-no="media2">
@@ -591,6 +597,11 @@ export default {
   },
   watch: {
       currStep(newValue) {
+
+          if (newValue == '1') {
+              gsap.to('.candles-back', { duration: 2, backgroundColor: 'rgb(30, 38, 41)'})
+          }
+
           if (newValue == '2') {
             gsap.to(this.$data, { duration: 0.8, candlesBot: 50 });
             gsap.to('.candles-back', { duration: 2, backgroundColor: 'rgb(62, 76, 85)'})
@@ -669,8 +680,6 @@ export default {
           let otherG = document.querySelector('#g-two')
           let other = otherG.querySelectorAll('circle')
 
-        //   gsap.to('#google-earth-video', {duration: 0, opacity: 0.15})
-        //   gsap.to('#g-earth-cover', {duration: 0, opacity: 0.15})
           gsap.to('#hundredk-img', {duration: 0, opacity: 0.25, scaleX: 1, scaleY: 1})
           
           if (newValue == 'stadium video play') {
@@ -735,7 +744,6 @@ export default {
                 let video = document.querySelector('#google-earth-video')
                 let vidCover = document.querySelector('#g-earth-cover')
                 let stadPoints = document.querySelector('#stadium-points')
-                gsap.to(video, {duration: 0, opacity: 0})
 
                 gsap.to(vidHolder, {duration: 0, justifyContent: 'flex-start'})
 
