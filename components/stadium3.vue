@@ -3,11 +3,6 @@
 <svg id="stadium-points" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="1020" height="800" viewBox="-5 -5 1700 1500" style="enable-background:new 0 0 777.22 841.35;"
 	 xml:space="preserve">
-<!-- <style type="text/css" scoped>
-	.st0{fill:none;stroke:#e25e3d;stroke-width:4;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#e25e3d;stroke-width:5;stroke-miterlimit:10;}
-	.st2{fill:none;stroke:#e25e3d;stroke-width:3;stroke-miterlimit:10;}
-</style> -->
 <defs>
 </defs>
 <g id="g-one">

@@ -4,7 +4,7 @@
 	 width="884.94px" height="400px" viewBox="0 0 884.94 593.23" style="enable-background:new 0 0 884.94 593.23;"
 	 xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.327;fill:#38474A;enable-background:new    ;}
+	.path0{opacity:0.327;fill:#38474A;enable-background:new    ;}
 	.st1{opacity:0.996;}
 	.st2{fill:#39484B;}
 	.st3{fill:#435257;}
@@ -18,7 +18,7 @@
 <defs>
 </defs>
 <g id="grp">
-	<path id="Path_9191_1_" class="st0" d="M17.57,67.8c0,0-39.54,283.87,0,363.01s175.59,161.95,176.38,162.42
+	<path id="Path_9191_1_" class="path0" d="M17.57,67.8c0,0-39.54,283.87,0,363.01s175.59,161.95,176.38,162.42
 		s-181.4-173.76-78.84-292.46S17.57,67.8,17.57,67.8z"/>
 	<g id="Group_730_1_" transform="translate(-180.058 -12545.503)">
 		<g id="Group_729_1_">

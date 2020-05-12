@@ -6,20 +6,20 @@
     <!-- <navBar id="nav-bar"></navBar> -->
     <div id="landing" class="just-center">
         <div class="hero-img-holder">
-            <img id="hero-img" src="~/static/hero2.png">
+            <img id="hero-img" src="~/static/hero3.svg">
         </div>
         <div class="just-center c-white max-430 title-info">
           <h2 id="page-title"><strong>Weapons <span class="of">of</span> <br> Mass Injustice</strong></h2>
-          <p class="italic sub-title">Visualizing the unequal impacts of gun violence and the search for peace in America’s cities</p>
+          <p class="italic sub-title">Visualizing the unequal impacts of gun violence and the search for peace in America's cities</p>
           <div class="line-sep-cont"><div class="line-sep"></div></div>
           <p>by Marisa Ruiz Asari</p>
           <div class="intro-text-holder">
             <div class="introd-text">
                 <p>
-                <span class="big-letter">A</span>mericans are 25 times more likely to be killed by a gun than residents of countries with similar GDPs. Contrary to media portrayals and policy discussions of the gun violence crisis in the US framed around mass shootings, daily gun violence – shootings that result in the disproportionate killing of young people of color and the loss of life to suicide – make up the majority of gun deaths in the US. 
+                <span class="first-character">A</span>mericans are 25 times more likely to be killed by a gun than residents of countries with similar GDPs. Contrary to media portrayals and policy discussions of the gun violence crisis in the US framed around mass shootings, daily gun violence – shootings that result in the disproportionate killing of young people of color and the loss of life to suicide – make up the majority of gun deaths in the US. 
                 </p>
                 <p>
-                    Gun violence and firearm offense data have historically been used to justify the criminalization of Black and Brown youth in America. But what if the gun violence crisis was treated as a public health epidemic rather than a cause for mass incarceration? This visual essay explores data on daily gun violence and documents efforts working to promote peace and collective healing.
+                    Gun violence and firearm offense data have historically been used to justify the criminalization of Black and Brown youth in America. But what if the gun violence crisis was treated as a public health crisis rather than a cause for mass incarceration? This visual essay explores data on daily gun violence and documents efforts working to promote peace and collective healing.
                 </p>
             </div>
           </div>
@@ -36,55 +36,35 @@
                 <div v-if="currStep == '1' || currStep == '2'" id="three-intro">
                     <div class="candles-back"></div>
                     <div class="candle-group">
-                    <transition-group name="fade" tag="div" appear>
-                        <div v-if="currStep == '2'" key="a" id="candles" style="bottom: 65%; left: 56%">
-                            <img width="6%" src="~assets/candles.svg" alt="candles">   
+                        <div id="candles" :style="{bottom: candlesBot + '%'}">
+                            <img width="100%" src="~assets/candles.svg" alt="candles">   
                         </div>
-                        <div v-if="currStep == '2'" key="b" id="candles" style="bottom: 63%; left: 53%">
-                            <img width="14%" src="~assets/candles.svg" alt="candles">   
-                        </div>
-                        <div v-if="currStep == '2'" key="c" id="candles" style="bottom: 60%; left: 53%">
-                            <img width="18%" src="~assets/candles.svg" alt="candles">   
-                        </div>
-                        <div v-if="currStep == '2'" key="d" id="candles" style="bottom: 58%; left: 50%">
-                            <img width="22%" src="~assets/candles.svg" alt="candles">   
-                        </div>
-                        <div v-if="currStep == '2'" key="e" id="candles" style="bottom: 53%; left: 44%">
-                            <img width="35%" src="~assets/candles.svg" alt="candles">   
-                        </div>
-                        <div v-if="currStep == '2'" key="f" id="candles" style="bottom: 40%; left: 30%">
-                            <img width="50%" src="~assets/candles.svg" alt="candles">   
-                        </div>
-                        <div v-if="currStep == '2'" key="g" id="candles" style="bottom: 30%; left: 20%">
-                            <img width="70%" src="~assets/candles.svg" alt="candles">   
-                        </div>
-                    </transition-group>
-                    <div id="candles" :style="{bottom: candlesBot + '%'}">
-                        <img width="100%" src="~assets/candles.svg" alt="candles">   
-                    </div>
+                    <!-- <div id="candles" :style="{bottom: candlesBot + '%'}">
+                        <img width="100%" src="~assets/candles-final-02.svg" alt="candles">   
+                    </div> -->
                     </div>
                 </div>
                 <div  v-if="currStep == '3'" id="vid-holder">
-                    <video id="citi-field-video" src="~assets/citi-field-short.mp4" muted="true" autoplay></video>
-                    <div class="vid-cover"></div>
+                    <div class="rel">
+                        <video id="citi-field-video" src="~assets/citi-stadium-lowres.mp4" muted="true" autoplay></video>
+                        <div class="vid-cover"></div>
+                    </div>
                     <!-- <div id="vid-text">That's enough to fill Citi Field baseball stadium in Queens, New York</div> -->
                 </div>
                 <div  v-show="currStep == 'stadium video'" id="vid-holder">
                     <div class="br-dark"></div>
                     <div class="rel">
-                      <video :style="{opacity: vOp}" id="google-earth-video" src="~assets/citi-googleearth-hd.mp4" muted="true" autoplay></video>
-                      <div :style="{opacity: vOp}" class="vid-cover" id="g-earth-cover"></div>
-                      <!-- <stadium :style="{opacity: stadiumOp, position: 'absolute', top:'-200px', left:'13vw', transform:'scale(0.55,0.55)'}"></stadium> -->
-                      <img v-show="subStep == 'flag'" id="flag-img" src="~static/flag.png"/>
-                      <seats :style="{opacity: stadiumOp, position: 'absolute', top:'275px', left:'575px', transform:'scale(1.38,1.38)'}"></seats>
-                      <!--  -->
+                      <video v-show="currStep == 'stadium video' && subStep != 'seats rearrange'" id="google-earth-video" src="~assets/citi-g-earth-lowres.mp4" muted="true" autoplay></video>
+                      <!-- <div :style="{opacity: vOp}" class="vid-cover" id="g-earth-cover"></div> -->
+                      <div class="vid-cover"></div>
+                      <seats :style="{opacity: stadiumOp, position: 'absolute', top: '0', left: '0', width: 'auto', height: '100%'}"></seats>
                     </div>
                 </div>
-                <div  v-if="currStep == 'rates'">
+                <div  v-show="currStep == 'rates'">
                     <div class="br-dark"></div>
                     <div class="seats-highlight-holder">
                         <div v-show="subStep == 'seatsHighlight' || subStep == 'seatsHighlight2'" class="stadium-overlay-text2 c-grey" id="over-1">Gun deaths per 100,000 people</div>
-                        <seatHighlight v-show="subStep == 'seatsHighlight' || subStep == 'seatsHighlight2'" class="seats-highlight"></seatHighlight>
+                        <seatHighlight v-if="subStep == 'seatsHighlight' || subStep == 'seatsHighlight2'" class="seats-highlight" v-animatePeople></seatHighlight>
                     </div>
                     <img id="hundredk-img" src="~static/100k.png">
                     <div v-show="subStep == 'rates2'" class="stadium-overlay-text c-white" id="over-1">100,000 people – 2.5&nbsp;Citi&nbsp;Field&nbsp;Stadiums</div>
@@ -92,42 +72,16 @@
                 </div>
                 <div v-if="currStep == 'age break' || currStep == 'age break highlight'">
                     <div class="br-dark"></div>
-                    <div class="chart-holder">
-                        <line-chart id="age-break-1" :chart-data="cd.lineChartData" :options="lineChartOptionsLabels('Gun Death Rates by Age', 'Gun deaths per 100k residents', 'Age group')" :height="400" :width="950"></line-chart>
-                        <svg  v-if="currStep == 'age break highlight'" class="highlight" id="highlight-1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="120.07px" height="120.07px" viewBox="0 0 120.07 120.07" style="enable-background:new 0 0 120.07 120.07;"
-                            xml:space="preserve">
-                        <defs>
-                        </defs>
-                        <circle class="st0" cx="60.04" cy="60.04" r="30"/>
-                        </svg>
-                        <svg  v-if="currStep == 'age break highlight'" class="highlight" id="highlight-2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="120.07px" height="120.07px" viewBox="0 0 120.07 120.07" style="enable-background:new 0 0 120.07 120.07;"
-                            xml:space="preserve">
-                        <defs>
-                        </defs>
-                        <circle class="st0" cx="60.04" cy="60.04" r="30"/>
-                        </svg>
+                    <div class="line-chart-holder">
+                        <line-chart id="age-break-1" :chart-data="cd.lineChartData" :options="lineChartOptionsLabels('Gun Death Rates by Age', 'Gun deaths per 100k residents', 'Age group')" :height="500" :width="950"></line-chart>
+                        <img v-if="currStep == 'age break highlight'" class="highlight-img" src="~/static/test-highlight-01.png" alt="">
                     </div>
                 </div>
                 <div v-if="currStep == 'age break 2' || currStep == 'age break 2 highlight'">
                     <div class="br-dark"></div>
-                    <div class="chart-holder">
-                        <line-chart id="age-break-1" :chart-data="cd.lineChartData2" :options="lineChartOptionsLabels('Gun Death Rates by Age', 'Gun deaths per 100k residents', 'Age group')" :height="400" :width="950"></line-chart>
-                        <svg  v-if="currStep == 'age break 2 highlight'" class="highlight" id="highlight-3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="120.07px" height="120.07px" viewBox="0 0 120.07 120.07" style="enable-background:new 0 0 120.07 120.07;"
-                            xml:space="preserve">
-                        <defs>
-                        </defs>
-                        <circle class="st0" cx="60.04" cy="60.04" r="30"/>
-                        </svg>
-                        <svg  v-if="currStep == 'age break 2 highlight'" class="highlight" id="highlight-4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="120.07px" height="120.07px" viewBox="0 0 120.07 120.07" style="enable-background:new 0 0 120.07 120.07;"
-                            xml:space="preserve">
-                        <defs>
-                        </defs>
-                        <circle class="st0" cx="60.04" cy="60.04" r="30"/>
-                        </svg>
+                    <div class="line-chart-holder">
+                        <line-chart id="age-break-1" :chart-data="cd.lineChartData2" :options="lineChartOptionsLabels('Gun Death Rates by Age', 'Gun deaths per 100k residents', 'Age group')" :height="500" :width="950"></line-chart>
+                         <img v-if="currStep == 'age break 2 highlight'" class="highlight-img" src="~/static/graph-highlight-2.png" alt="">
                     </div>
                 </div>
                 <div v-if="currStep == 'even more' || currStep == 'peaks'">
@@ -144,7 +98,7 @@
                 <div v-if="currStep == 'race age all'">
                     <div class="br-dark"></div>
                     <div class="line-chart-holder">
-                    <line-chart ref="race-line-chart" :chart-data="cd.ageRaceChartData" :options="lineChartPlainOptions" :height="400" :width="800"></line-chart>
+                    <line-chart ref="race-line-chart" :chart-data="cd.ageRaceChartData" :options="lineChartOptionsLabels('Gun Death Rates by Age', 'Gun deaths per 100k residents', 'Age group', 'no legend')" :height="400" :width="800"></line-chart>
                     </div>
                 </div>
                 <div v-if="currStep == 'break down race'">
@@ -154,7 +108,7 @@
                 <div v-if="currStep == 'does not stop'">
                     <div class="br-dark"></div>
                 </div>
-                <div v-if="currStep == 'us incarceration intro' || currStep == 'us incarceration' || currStep == 'homicide and incarceration'">
+                <div v-show="currStep == 'us incarceration intro' || currStep == 'us incarceration' || currStep == 'homicide and incarceration'">
                     <div class="br-dark"></div>
                     <div class="section-title-overlay c-grey" v-if="currStep == 'us incarceration' || currStep == 'homicide and incarceration'">Incarcerated people per 100,000 residents</div>
                     <incarCompare id="incarCompare"/>
@@ -183,70 +137,97 @@
                         <line-chart ref="race-line-chart" :chart-data="cd.prisonerTimeLineChartData" :options="lineChartOptionsLabels('Incarceration Rates by Race/Ethnicity', 'Incarcerated people per 100k residents', 'Year')" :height="350" :width="700"></line-chart>
                     </div>
                 </div>
-                <div v-if="currStep == 'criminality'">
-                    <div class="br-dark"></div>
-                    <img src="~static/grid_1.svg" alt="">
-                </div>
-                <div v-if="currStep == 'entire response'">
-                    <div class="br-dark"></div>
-                    <img src="~static/grid_1.2.svg" alt="">
-                </div>
-                <div v-if="currStep == 'perpetrators'">
-                    <div class="br-dark"></div>
-                    <img src="~static/grid_2.svg" alt="">
-                </div>
-                <div v-if="currStep == 'connected'">
-                    <div class="br-dark"></div>
-                    <img src="~static/grid_3.svg" alt="">
-                </div>
-                <div v-if="currStep == 'local strategies'">
-                    <div class="br-dark"></div>
-                    <img src="~static/grid_4.svg" alt="">
-                </div>
-                <div v-if="currStep == 'tailored support'">
-                    <div class="br-dark"></div>
-                    <img src="~static/focused_strategy.svg" alt="">
-                </div>
-                <div v-if="currStep == 'epidemic'">
-                    <div class="br-dark"></div>
-                    <img src="~static/tailored_support.svg" alt="">
-                </div>
-                <div v-if="currStep == 'diff solutions'">
-                    <div class="br-dark"></div>
-                    <img src="~static/local_types.svg" alt="">
-                </div>
-                <div v-if="currStep == 'common thread'">
-                    <div class="br-dark"></div>
-                    <img src="~static/common_thread.svg" alt="">
-                </div>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'criminality'">
+                        <div class="br-dark"></div>
+                        <img src="~static/grid_1.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'entire response'">
+                        <div class="br-dark"></div>
+                        <img src="~static/grid_1.2.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'perpetrators'">
+                        <div class="br-dark"></div>
+                        <img src="~static/grid_2.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'connected' || currStep == 'addressing'">
+                        <div class="br-dark"></div>
+                        <img src="~static/grid_3.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'local strategies'">
+                        <div class="br-dark"></div>
+                        <img src="~static/grid_4.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'tailored support'">
+                        <div class="br-dark"></div>
+                        <img src="~static/focused_strategy.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'epidemic'">
+                        <div class="br-dark"></div>
+                        <img src="~static/tailored_support.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'diff solutions'">
+                        <div class="br-dark"></div>
+                        <img src="~static/local_types.svg" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'programs' || currStep == 'combination'">
+                        <div class="br-dark"></div>
+                        <programMap/>
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'common thread'">
+                        <div class="br-dark"></div>
+                        <img src="~static/common_thread.svg" alt="">
+                    </div>
+                </transition>
                 <div v-if="currStep == 'Richmond'">
                     <div class="br-dark"></div>
-                    <div class="chart-holder">
-                      <line-chart id="richmond-chart" :chart-data="cd.richmondHomChartData" :options="lineChartOptionsLabels('Gun Homicides in Richmond, CA', 'Gun Homicides', 'Year')" :height="400" :width="950"></line-chart>
+                    <div class="line-chart-holder">
+                      <line-chart id="richmond-chart" :chart-data="cd.richmondHomChartData" :options="lineChartOptionsLabels('Gun Homicides in Richmond, CA', 'Gun Homicides', 'Year')" :height="500" :width="950"></line-chart>
                     </div>
                 </div>
                 <div v-if="currStep == 'Richmond2'">
                     <div class="br-dark"></div>
-                    <div class="chart-holder">
-                      <line-chart id="richmond-chart2" :chart-data="cd.richmondCountChartData" :options="lineChartOptionsLabels('Non-fatal shootings in Richmond, CA', 'Shootings', 'Year')" :height="400" :width="950"></line-chart>
+                    <div class="line-chart-holder">
+                      <line-chart id="richmond-chart2" :chart-data="cd.richmondCountChartData" :options="lineChartOptionsLabels('Non-fatal shootings in Richmond, CA', 'Shootings', 'Year')" :height="500" :width="950"></line-chart>
                     </div>
                 </div>
-                <div v-if="currStep == 'media'">
-                    <div class="br-dark"></div>
-                    <img src="~static/media.svg" width="100%" alt="">
-                </div>
-                <div v-if="currStep == 'media2'">
-                    <div class="br-dark"></div>
-                    <img src="~static/media2.svg" width="100%" alt="">
-                </div>
-                <div v-if="currStep == 'mass police'">
-                    <div class="br-dark"></div>
-                    <img src="~static/mass_police.svg" width="100%" alt="">
-                </div>
-                <div v-if="currStep == 'meaningful solution'">
-                    <div class="br-dark"></div>
-                    <img src="~assets/candles.svg" width="100%" alt="">
-                </div>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'media'">
+                        <div class="br-dark"></div>
+                        <img src="~static/media5.svg" width="100%" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'media2'">
+                        <div class="br-dark"></div>
+                        <img src="~static/media6.svg" width="100%" alt="">
+                    </div>
+                </transition>
+                <transition name="fade" tag="div">
+                    <div class="fadeImg" v-show="currStep == 'mass police'">
+                        <div class="br-dark"></div>
+                        <img src="~static/mass_police.svg" width="100%" alt="">
+                    </div>
+                </transition>
+                
             </div>
             <!-- start steps -->
             <div class="step" data-step-no="1"></div>
@@ -258,7 +239,7 @@
             <div class="step" data-step-no="3">
                 <div id="vid-text">That's enough to fill Citi Field baseball stadium in Queens, New York</div>
             </div>
-            <div class="step" data-step-no="stadium video">
+            <div class="step" data-step-no="stadium video" data-substep="stadium video play">
             </div>
             <div class="step" data-step-no="stadium video" data-substep="seats suicides">
                 <div class="step-text">
@@ -280,16 +261,6 @@
                     While these numbers paint a grim picture, percentages and annual gun death counts can only tell us so much about the nature of gun violence in the US. 
                 </div>
             </div>
-            <!-- <div class="step" data-step-no="stadium video" data-substep="two types">
-                <div class="step-text">
-                    The two types of gun deaths that tend to get the most media and political coverage are mass shootings and police shootings. Together, these incidents account for less than 2% of all gun deaths.
-                </div>
-            </div> -->
-            <!-- <div class="step" data-step-no="stadium video" data-substep="flag">
-                <div class="step-text">
-                    Not all Americans are impacted equally by gun violence, nor are their stories given equal attention by media and policymakers.          
-                </div>
-            </div> -->
             <div class="step" data-step-no="rates" data-substep="rates">
                 <div class="step-text">
                     To fully understand this crisis, we need to look at rates, often measured as the number of gun deaths per 100,000 people.                
@@ -299,27 +270,30 @@
             </div>
             <div class="step" data-step-no="rates" data-substep="seatsHighlight">
                 <div class="step-text">
-                   In 2018 there were 12 gun deaths for every 100,000 Americans.
+                   On average, there were 12 gun deaths for every 100,000 Americans in 2018.
                 </div>
             </div>
-            <div class="step" data-step-no="rates" data-substep="seatsHighlight2">
+            <!-- <div class="step" data-step-no="rates" data-substep="seatsHighlight2">
                 <div class="step-text">
                    If we look at only Americans between ages 25-34, the gun death rate rises to 17.
                 </div>
-            </div>
+            </div> -->
             <div class="step" data-step-no="age break">
                 <div class="step-text">
-                    To see the full spectrum , we can plot these rates by 10 year age categories.
+                    But by breaking down the gun death rate by 10 year age categories, we start to see that gun violence doesn't impact all Americans equally.
+                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="age break highlight">
                 <div class="step-text">
-                    The plot of gun death rates by age has two peaks, one around ages 15-34, and another for ages 75-84.
+                    The plot of death rates by age has two peaks, one around ages 15-34, and another for ages 75-84.
                 </div>
             </div>
             <div class="step" data-step-no="age break 2">
                 <div class="step-text">
                     But these peaks are driven by two very different types of gun deaths. Gun homicides are the highly concentrated around young Americans, while gun suicide is more evenly dispersed and highest amongst older populations.
+                    <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
+
                 </div>
             </div>
             <div class="step" data-step-no="age break 2 highlight">
@@ -335,6 +309,7 @@
             <div class="step" data-step-no="race age all">
                 <div class="step-text">
                     The gun homicide rate for young Black Americans in particular is greater than both the gun homicide or gun suicide rate of any other age or racial/ethnic group.
+                    <p class="sub-text">Interact with this graph by hovering on points</p>
                 </div>
             </div>
             <div class="step" data-step-no="break down race">
@@ -362,16 +337,19 @@
             <div class="step" data-step-no="arrested">
                 <div class="step-text">
                     More broadly, Black Americans are most likely to be arrested for weapons possession, despite research showing that gun ownership is up to 12% higher amongst White Americans.
+                    <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="jailed">
                 <div class="step-text">
-                    They are most likely to be jailed.
+                    Black Americans are also most likely to be jailed.
+                    <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="still disparate">
                 <div class="step-text">
                     And though overall incarceration rates have seen recent declines, rates remain exponentially higher for Black Americans than any other racial/ethnic group. 
+                    <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="criminality">
@@ -394,6 +372,11 @@
                     And that these individuals are often connected and caught in cycles of retaliatory violence.
                 </div>
             </div>
+            <div class="step" data-step-no="addressing">
+                <div class="step-text">
+                    Addressing the most pervasive forms of gun violence requires strategies that address the unique drivers of gun violence at the community level, and finding ways to address gun violence without further contributing to systems of mass incarceration and racial inequity in the US. 
+                </div>
+            </div>
             <div class="step" data-step-no="local strategies">
                 <div class="step-text">
                     Local, evidence-based gun violence reduction approaches take a new look at the drivers of gun violence and work to humanize rather than criminalize those at the center.
@@ -414,6 +397,14 @@
                     Some work independently to de-escalate potentially lethal situations while others work in partnership with law enforcement to build community trust. Others yet work out of hospitals, reaching individuals after they have been injured by a firearm to end cycles of retaliation.
                 </div>
             </div>
+            <div class="step" data-step-no="programs" data-substep="programs-static">
+                <div class="step-text">
+                    Many cities across the US have implemented local intervention strategies. 
+                    <p class="sub-text">Hover on a location to learn more about each program or on a county to see the gun homicide rate between 2010-2018.</p>
+                </div>
+            </div>
+            <div class="step" data-step-no="programs" data-substep="programs-interactive">
+            </div>
             <div class="step" data-step-no="common thread">
                 <div class="step-text">
                     The common thread amongst these strategies is that all rely on the expertise of community members and individuals who have deep personal experiences with cyclical gun violence. 
@@ -422,26 +413,22 @@
             <div class="step" data-step-no="Richmond">
                 <div class="step-text">
                     And the results provide reason for consideration – Richmond, CA, at its peak labeled as one of the most deadly cities in the US, saw gun homicides decrease by over 40% in the first year of adopting its local gun violence reduction program in 2007. 
+                    <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
-                 <div class="step" data-step-no="Richmond2">
+            <div class="step" data-step-no="Richmond2">
                 <div class="step-text">
                     Non-fatal shootings also fell significantly after the program was adopted.
                 </div>
             </div>
-            <div class="step" data-step-no="Chicago">
+            <!-- <div class="step" data-step-no="Chicago">
                 <div class="step-text">
                     In Chicago, IL, the Ceasefire program decreased shootings by 38% and killings by 29% in two neighborhoods with some of the city’s highest gun violence rates.
                 </div>
-            </div>
+            </div> -->
             <div class="step" data-step-no="combination">
                 <div class="step-text">
                     These programs, as part of a larger integrated set of gun violence reduction strategies, show that local, community-based gun violence reduction programs can contribute meaningful solutions to America’s gun crisis, and particularly the impacts of gun violence on communities of color, without detracting from much needed policy level gun reform. 
-                </div>
-            </div>
-            <div class="step" data-step-no="">
-                <div class="step-text">
-                    Addressing the most pervasive forms of gun violence requires strategies that address the unique drivers of gun violence at the community level, and finding ways to address gun violence without further contributing to systems of mass incarceration and racial inequity in the US. 
                 </div>
             </div>
             <!-- <div class="step" data-step-no="">
@@ -459,19 +446,54 @@
                     What will it take to elevate daily gun violence to the national discourse on reducing gun violence? <br><br> Explore the resources below to learn more about this work being undertaken by cities and organizations around the country.
                 </div>
             </div>
-            <div class="step" data-step-no="resources">
-                <div class="step-text">
-                </div>
-            </div>
-            <div class="step" data-step-no="get involved">
-                <div class="step-text">
-                </div>
+            <div class="step" data-step-no="media2">
             </div>
         </Scrollama>
     </client-only>
+    <div class="br-grad">
+        <img id="closing-candles" src="~/assets/candles.svg" alt="">
+        <div id="learn-more">Learn More</div>
+        <div class="resources-container">
+            <div class="resource-box">
+                <div class="resource-group">Gun violence reduction models</div>
+                <div class="resource-links">
+                    <p><a href="https://nnscommunities.org/strategies/group-violence-intervention/">Group Violence Intervention</a></p>
+                    <p><a href="https://www.advancepeace.org/">Advance Peace</a></p>
+                    <p><a href="https://www.thehavi.org/">Hospital Based Violence Intervention Programs</a></p>
+                    <p><a href="https://cvg.org/">Cure Violence</a></p>
+                </div>
+            </div>
+            <div class="resource-box">
+                <div class="resource-group">Policy & Advocacy</div>
+                <div class="resource-links">
+                    <p><a href="https://giffords.org/issue/urban-gun-violence/">Giffords Law Center</a></p>
+                    <p><a href="https://everytownresearch.org/gun-violence-cities/">Everytown for Gun Safety</a></p>
+                    <p><a href="https://www.vera.org/">Vera Institute of Justice</a></p>
+                </div>
+            </div>
+            <div class="resource-box">
+                <div class="resource-group">Media & Data Visualization</div>
+                <div class="resource-links">
+                    <p><a href="https://www.theguardian.com/us-news/series/guns-and-lies">Guns and Lies, The Guardian</a></p>
+                    <p><a href="https://fivethirtyeight.com/features/gun-deaths/">Gun Deaths in America, FiveThirtyEight</a></p>
+                    <p><a href="https://www.washingtonpost.com/graphics/2018/investigations/black-homicides-arrests/">An Unequal Justice, Washington Post</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer>
-      <img src="~static/ending-hero.svg" alt="">
-      This project was completed in partial fulfillment of the Masters in Data Visualization Program at Parsons School of Design
+      <img id="footer-img" src="~static/ending-hero.svg" alt="">
+      <div class="footer-links">
+          <div class="link-container">
+              <p class="footer-text"><a id="top-btn" href="#page-title">Back to top</a></p>
+          </div>
+          <div class="link-container">
+              <a href="">Background & Methodology</a>
+          </div>
+          <div class="link-container">
+               <a href="">Marisa Ruiz Asari</a>
+          </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -481,13 +503,16 @@
 import heroImg from '~/static/hero2.png'
 import navBar from '~/components/navBar.vue'
 import stadium from '~/components/stadium.vue'
-import seats from '~/components/stadium3.vue'
+import seats from '~/components/stadium5.vue'
 import LineChart from '~/components/LineChart'
 import allChartDataJson from '~/static/allChartData.json'
 import seatHighlight from '~/components/seat-highlight.vue'
 import incarCompare from '~/components/incarc_compare.vue'
 import allChartData from '~/static/one-chartdata.json'
+import programData from '~/static/program_cities_geo.json'
+import programMap from '~/components/program-map.vue'
 import {gsap} from "gsap"
+import d3 from "d3"
 
 
 const chartColors = {
@@ -505,10 +530,12 @@ export default {
       stadium,
       seats,
       seatHighlight,
-      incarCompare
+      incarCompare,
+      programMap
   },
   data() {
     return {
+      scrollDirection: 'down',
       currStep: '1',
       subStep: null,
       stadiumCoords: null,
@@ -521,6 +548,7 @@ export default {
       cd: allChartDataJson,
       raceChartData: allChartData[0].raceEth,
       raceChartDims: ['100', '200'],
+      programData: programData.features,
       lineChartPlainOptions: {
         responsive: true,
         legend: {
@@ -564,7 +592,7 @@ export default {
   watch: {
       currStep(newValue) {
           if (newValue == '2') {
-            gsap.to(this.$data, { duration: 0.3, candlesBot: 0 });
+            gsap.to(this.$data, { duration: 0.8, candlesBot: 50 });
             gsap.to('.candles-back', { duration: 2, backgroundColor: 'rgb(62, 76, 85)'})
 
           } else {
@@ -573,10 +601,17 @@ export default {
           } 
           
           if (newValue == 'stadium video') {
-            this.stadiumOp = 0;
-            let tl = gsap.timeline()
-            tl.to(this.$data, { delay: 3, duration: 0.2, stadiumOp: 1 })
-                           .to(this.$data, { delay: 0.7, duration: 0.4, vOp: 0.15 })
+            if(this.scrollDirection == 'down') {
+                this.stadiumOp = 0;
+                let tl = gsap.timeline()
+                tl.to(this.$data, { delay: 3, duration: 0.2, stadiumOp: 1 })
+                            // .to(this.$data, { delay: 0.7, duration: 0.4, vOp: 0.15 })
+            }
+ 
+
+
+            // let video = document.querySelector('#citi-field-video')
+            // video.play()
           } else {
 
           } 
@@ -589,10 +624,23 @@ export default {
           } else {
 
           } 
+
+          if (newValue == 'us incarceration intro') {
+              if(this.scrollDirection == 'up') {
+                let compareGrp = document.querySelector('.compare-grp')
+                gsap.to(compareGrp, {duration: 1, opacity: 0.1})
+              }
+          }
           
           if (newValue == 'us incarceration') {
             let compareGrp = document.querySelector('.compare-grp')
             gsap.to(compareGrp, {duration: 1, opacity: 1})
+            if (this.scrollDirection == 'up') {
+                let usCompare = document.querySelector('.us-comparison')
+                gsap.to(usCompare, {duration: 1, opacity: 0})
+                let compareAllSvg = document.querySelector('#incarCompare')
+                gsap.to(compareAllSvg, {duration: 1, width: '400vw'})
+            }
                 
           } else {
 
@@ -608,6 +656,7 @@ export default {
           }
       },
       subStep(newValue) {
+          console.log(newValue)
           let stadiumSvg = document.querySelector('#stadium-points')
           let points = stadiumSvg.querySelectorAll('circle')
 
@@ -620,39 +669,60 @@ export default {
           let otherG = document.querySelector('#g-two')
           let other = otherG.querySelectorAll('circle')
 
-          gsap.to('#google-earth-video', {duration: 0, opacity: 0.15})
-          gsap.to('#g-earth-cover', {duration: 0, opacity: 0.15})
+        //   gsap.to('#google-earth-video', {duration: 0, opacity: 0.15})
+        //   gsap.to('#g-earth-cover', {duration: 0, opacity: 0.15})
           gsap.to('#hundredk-img', {duration: 0, opacity: 0.25, scaleX: 1, scaleY: 1})
           
+          if (newValue == 'stadium video play') {
+              if(this.scrollDirection == 'down') {
+                let video = document.querySelector('#google-earth-video')
+                video.play()
+              }
+          }
 
           if (newValue == 'seats suicides') {
+
+              if (this.seatsArranged == false) {
+                console.log('rearranging seats')
+                this.rearrangeSeats()
+               }
+
               gsap.to('#g-three', { delay: 0.2, duration: 0.4, opacity: 0.25, fill: '#6680C2' })
               gsap.to('#g-two', { delay: 0.2, duration: 0.4, opacity: 0.25, fill: '#63968C' })
               gsap.to('#g-one', { delay: 0.2, duration: 0.8, opacity: 1, scaleX: 1.01, scaleY: 1.01 })
               
               for(let point in suic) {
-                  gsap.to(suic[point], {duration: 0.4, stroke: '#718CBC', strokeWidth: 5})
+                  gsap.to(suic[point], {duration: 0.4, stroke: '#718CBC', strokeWidth: 3})
               }
 
               for(let point in hom) {
-                  gsap.to(hom[point], {duration: 0.4, stroke: '#C66D6D', strokeWidth: 5})
+                  gsap.to(hom[point], {duration: 0.4, stroke: '#C66D6D', strokeWidth: 3})
               }
 
               for(let point in other) {
-                  gsap.to(other[point], {duration: 0.4, stroke: '#989B9A', strokeWidth: 5})
+                  gsap.to(other[point], {duration: 0.4, stroke: '#989B9A', strokeWidth: 3})
               }
+
           } else if (newValue == 'seats homicides') {
+
               gsap.to('#g-two', { delay: 0.2, duration: 0.4, opacity: 0.25 })
               gsap.to('#g-one', { delay: 0.2, duration: 0.4, opacity: 0.25, scaleX: 1, scaleY: 1})
               gsap.to('#g-three', { delay: 0.2, duration: 0.8, opacity: 1, scaleX: 1.01, scaleY: 1.01 })
-          } else if (newValue == 'seats other') {
-              gsap.to('#g-two', { delay: 0.2, duration: 0.8, opacity: 1, scaleX: 1.01, scaleY: 1.01 })
-              gsap.to('#g-one', { delay: 0.2, duration: 0.4, opacity: 0.25, scaleX: 1, scaleY: 1})
-              gsap.to('#g-three', { delay: 0.2, duration: 0.4, opacity: 0.25, scaleX: 1, scaleY: 1})
               if (this.seatsArranged == false) {
                 console.log('rearranging seats')
                 this.rearrangeSeats()
                }
+          } else if (newValue == 'seats other') {
+
+              if (this.seatsArranged == false) {
+                console.log('rearranging seats')
+                this.rearrangeSeats()
+               }
+
+              gsap.to('#g-two', { delay: 0.2, duration: 0.8, opacity: 1, scaleX: 1.01, scaleY: 1.01 })
+              gsap.to('#g-one', { delay: 0.2, duration: 0.4, opacity: 0.25, scaleX: 1, scaleY: 1})
+              gsap.to('#g-three', { delay: 0.2, duration: 0.4, opacity: 0.25, scaleX: 1, scaleY: 1})
+              
           } else {
               gsap.to('#g-two', { delay: 0.2, duration: 0.4, opacity: 1, scaleX: 1, scaleY: 1 })
               gsap.to('#g-one', { delay: 0.2, duration: 0.4, opacity: 1, scaleX: 1, scaleY: 1})
@@ -661,13 +731,26 @@ export default {
 
           if (newValue == 'seats rearrange') {
                 
+                let vidHolder = document.querySelector(' #vid-holder')
                 let video = document.querySelector('#google-earth-video')
                 let vidCover = document.querySelector('#g-earth-cover')
                 let stadPoints = document.querySelector('#stadium-points')
+                gsap.to(video, {duration: 0, opacity: 0})
 
-                gsap.to(video, {duration: 0.5, opacity: 0})
-                gsap.to(vidCover, {duration: 0.5, opacity: 0})
-                gsap.to(stadPoints, {duration: 0, x: -400, y: -100})
+                gsap.to(vidHolder, {duration: 0, justifyContent: 'flex-start'})
+
+                let pxPerDot = 0.70*((screen.height * screen.width)/points.length)
+                console.log(pxPerDot)
+
+                let sqRt = Math.sqrt(pxPerDot)
+                console.log(sqRt)
+
+                let dotsPerRow = screen.width/sqRt
+                console.log(dotsPerRow)
+
+                let rowCount = points.length/dotsPerRow
+                console.log(rowCount)
+                // gsap.to(stadPoints, {duration: 0, top: 0, left: 0})
 
                 console.log(points.length)
                 let cx = 0;
@@ -675,17 +758,18 @@ export default {
                 let currentLine = 1;
 
                 let total = points.length
-                let lines = 80
-                let perLine = Math.floor(points.length/lines) 
+                let lines = Math.floor(rowCount)
+                let perLine = Math.floor(dotsPerRow)
+                // let perLine = Math.floor(points.length/lines) 
 
                 for (let point in points) {
-                    cx += 12;
+                    cx += Math.floor(sqRt);
                     if (point > perLine * currentLine) {
                         currentLine ++
-                        cy +=12
+                        cy += Math.floor(sqRt);
                         cx = 0;
                     }
-                    gsap.to(points[point], {duration: 2, cx: cx, cy: cy, r: 2});
+                    gsap.to(points[point], {duration: 2, cx: cx, cy: cy, r: 0.5});
                 }
                 this.seatsArranged = false;
           } else if (newValue == 'flag') {
@@ -697,10 +781,6 @@ export default {
                 gsap.to('#hundredk-img', {duration: 1, opacity: 1, scaleX: 1, scaleY: 1, y: 0})
           } else if (newValue == 'seatsHighlight') {
                 gsap.to('#hundredk-img', {duration: 0.5, opacity: 1, scaleX: 0.3, scaleY: 0.3, y: 200})
-                let people = document.querySelectorAll('.row1')
-                for(let person in people ) {
-                    gsap.from(people[person], {delay: person/4, duration: 0.2, opacity: 0})
-                }
           } else if (newValue == 'seatsHighlight2') {
                 gsap.to('#hundredk-img', {duration: 0, opacity: 1, scaleX: 0.3, scaleY: 0.3, y: 200})
                 let people2 = document.querySelectorAll('.row2')
@@ -709,15 +789,27 @@ export default {
                     gsap.from(people2[i], {delay: i/4, duration: 0.2, opacity: 0})
                 }    
           }
+
+          if (newValue == 'programs-static') {
+            gsap.to('#back', {duration: 0.5, opacity: 0.4, pointerEvents: 'none'})
+          } else if (newValue == 'programs-interactive') {
+            gsap.to('#back', {duration: 0.5, opacity: 1, pointerEvents: 'auto'})
+          }
       } 
   },
   methods: {
-      lineChartOptionsLabels(chartTitle, yLabel, xLabel) {
+      lineChartOptionsLabels(chartTitle, yLabel, xLabel, legend) {
+        let ldisplay;
+        if (legend == 'no legend') {
+            ldisplay = false
+        } else {
+            ldisplay = true
+        };
         return {
         responsive: true,
         legend: {
-          display: true,
-          position: 'right',
+          display: ldisplay,
+          position: 'bottom',
           fontFamily: "'Merriweather', serif",
           fontColor: 'white'
         },
@@ -770,23 +862,37 @@ export default {
           console.log(step)
           this.currStep = step
           this.subStep = subStep
+          this.scrollDirection = event.direction
       },
       resetContent(event) {
           console.log(event.direction)
           console.log(event.element)
       },
       rearrangeSeats() {
+      let vidHolder = document.querySelector(' #vid-holder')
+      gsap.to(vidHolder, {duration: 0, justifyContent: 'center'})
       let stadPoints = document.querySelector('#stadium-points')
       let positionedPoints = stadPoints.querySelectorAll('circle')
 
-      gsap.to(stadPoints, {duration: 0, x: 0, y: 0})
+    //   gsap.to(stadPoints, {duration: 0, x: 0, y: 0, top: '295px', left: '720px', scaleX: 1.36, scaleY: 1.36, width: 1400, height: 900})
 
       for (let positionedPoint in positionedPoints) {
         gsap.to(positionedPoints[positionedPoint], {duration: 1, cx: '', cy: '', r: ''});
       }
       this.seatsArranged = true;
     }
+  },
+  directives: {
+  animatePeople: {
+    // directive definition
+    inserted: function (el) {
+      let people = document.querySelectorAll('.row1')
+      for(let person in people ) {
+        gsap.from(people[person], {delay: person/4, duration: 0.2, opacity: 0})
+      }
+    }
   }
+}
 }
 
 if (process.client) {
