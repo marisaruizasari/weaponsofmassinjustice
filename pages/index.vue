@@ -1,9 +1,18 @@
 <template>
   <div class="content">
+    <div id="mobile-background">
+        <div id="mobile-message">
+            <div class="m-text m-text-title">Thank you for visiting Weapons of Mass Injustice! </div> 
+            <div class="m-text">Sometimes we all need a healthy break from our phones. For the best viewing experience, please visit the site on desktop.</div>
+            <div id="mobile-hero-cont">
+                <img id="mobile-hero-img" src="~/static/hero3.svg">
+            </div>
+        </div>
+    </div>
+    <div id="desktop">
     <div id="fixed-progress">
       <div id="progress-bar"></div>
     </div>
-    <!-- <navBar id="nav-bar"></navBar> -->
     <div id="landing" class="just-center">
         <div class="hero-img-holder">
             <img id="hero-img" src="~/static/hero3.svg">
@@ -90,7 +99,7 @@
                             </div>
                         </div>
                         <div id="small-mult-legend-holder">
-                            <img id="small-mult-legend" src="~/static/small-mult-legend.png" alt="legend">
+                            <img id="small-mult-legend" height="auto" src="~/static/small-mult-legend.png" alt="legend">
                         </div>
                     </div>
                 </div>
@@ -199,7 +208,7 @@
                 <div v-if="currStep == 'Richmond'">
                     <div class="br-dark"></div>
                     <div class="line-chart-holder">
-                      <line-chart id="richmond-chart" :chart-data="cd.richmondChartData" :options="lineChartOptionsLabels('Gun Homicides in Richmond, CA', 'Gun Homicides', 'Year')" :height="500" :width="950"></line-chart>
+                      <line-chart id="richmond-chart" :chart-data="cd.richmondChartData" :options="lineChartOptionsLabels('Gun Homicide Rates in Richmond, CA', 'Gun Homicide Rate', 'Year')" :height="500" :width="950"></line-chart>
                     </div>
                 </div>
                 <div v-if="currStep == 'Richmond2'">
@@ -231,12 +240,13 @@
             <!-- start steps -->
             <div class="step" data-step-no="1"></div>
             <div class="step" data-step-no="2">
-              <div class="step-text m-bottom text-center">
-                <h2 class="c-white">In 2018 <span class="big-num">39,201</span><br>Americans were killed by a gun</h2>
+              <div @mouseover="citation = 'in 2018'" @mouseleave="citation = null" class="step-text">
+                <h2 class="c-white text-center"><span class="big-num">39,201</span> Americans <br> were killed by a gun in 2018. <sup>1</sup> </h2>
+                <p class="sub-text citation" v-show="citation == 'in 2018'">Source: Underlying Cause of Death 2018, Firearm Related. CDC Wonder</p>
               </div>
             </div>
             <div class="step" data-step-no="3">
-                <div id="vid-text">That's enough to fill Citi Field baseball stadium in Queens, New York</div>
+                <div id="vid-text">That's enough to fill Citi Field baseball stadium in Queens, New York.</div>
             </div>
             <div class="step" data-step-no="stadium video" data-substep="stadium video play">
             </div>
@@ -252,7 +262,7 @@
             </div>
             <div class="step" data-step-no="stadium video" data-substep="seats other">
                 <div class="step-text">
-                    <span>2%</span> were other types of gun violence or were of an undetermined nature.
+                    <span>2%</span> were accidents or were of an undetermined nature.
                 </div>
             </div>
             <div class="step" data-step-no="stadium video" data-substep="seats rearrange">
@@ -268,19 +278,17 @@
             <div class="step" data-step-no="rates" data-substep="rates2">
             </div>
             <div class="step" data-step-no="rates" data-substep="seatsHighlight">
-                <div class="step-text">
-                   On average, there were 12 gun deaths for every 100,000 Americans in 2018.
+                <div @mouseover="citation = 'on average'" @mouseleave="citation = null" class="step-text">
+                   On average, there were 12 gun deaths for every 100,000 Americans in 2018.<sup>1</sup>
+                   <p class="sub-text citation" v-show="citation == 'on average'">Source: Underlying Cause of Death 2018, Firearm Related. CDC Wonder</p>
                 </div>
             </div>
-            <!-- <div class="step" data-step-no="rates" data-substep="seatsHighlight2">
-                <div class="step-text">
-                   If we look at only Americans between ages 25-34, the gun death rate rises to 17.
-                </div>
-            </div> -->
             <div class="step" data-step-no="age break">
-                <div class="step-text">
-                    By breaking down the gun death rate by 10 year age categories, we start to see that gun violence doesn't impact all Americans equally.
+                <div @mouseover="citation = 'by breaking'" @mouseleave="citation = null" class="step-text">
+                    By breaking down the gun death rate by 10 year age categories, we start to see that gun violence doesn't impact all Americans equally.<sup>1</sup>
+                     <p class="sub-text citation" v-show="citation == 'by breaking'">Graph source: Underlying Cause of Death 2018, Firearm Related. CDC Wonder</p>
                      <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
+
                 </div>
             </div>
             <div class="step" data-step-no="age break highlight">
@@ -289,10 +297,10 @@
                 </div>
             </div>
             <div class="step" data-step-no="age break 2">
-                <div class="step-text">
-                    But these peaks are driven by two very different types of gun deaths. Gun homicides are the highly concentrated around young Americans, while gun suicide is more evenly dispersed and highest amongst older populations.
+                <div @mouseover="citation = 'these peaks'" @mouseleave="citation = null" class="step-text">
+                    But these peaks are driven by two very different types of gun deaths. Gun homicides are highly concentrated around young Americans, while gun suicide is more evenly dispersed and highest among older populations.<sup>1</sup>
+                    <p class="sub-text citation" v-show="citation == 'these peaks'">Graph source: Underlying Cause of Death 2018, Firearm Related. CDC Wonder</p>
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
-
                 </div>
             </div>
             <div class="step" data-step-no="age break 2 highlight">
@@ -301,13 +309,16 @@
                 </div>
             </div>
             <div class="step" data-step-no="even more">
-                <div class="step-text">
-                    The largest inequities in gun death become apparent when we look at these rates by race/ethnicity.
+                <div @mouseover="citation = 'largest'" @mouseleave="citation = null" class="step-text">
+                    The largest inequities in gun deaths become apparent when we look at these rates by race/ethnicity.<sup>1</sup>
+                    <p class="sub-text citation" v-show="citation == 'largest'">Graph source: Underlying Cause of Death 2018, Firearm Related. CDC Wonder</p>
+
                 </div>
             </div>
             <div class="step" data-step-no="race age all">
-                <div class="step-text">
-                    The gun homicide rate for young Black Americans is significantly greater than both the gun homicide or gun suicide rate of any other age or racial/ethnic group.
+                <div @mouseover="citation = 'overlaying'" @mouseleave="citation = null" class="step-text">
+                    In overlaying these graphs, we can see that the gun homicide rate for young Black Americans is significantly greater than both the gun homicide or gun suicide rate of any other age or racial/ethnic group.<sup>1</sup>
+                    <p class="sub-text citation" v-show="citation == 'overlaying'">Graph source: Underlying Cause of Death, Firearm Related, CDC Wonder, 2018.</p>
                     <p class="sub-text">Interact with this graph by hovering on points</p>
                 </div>
             </div>
@@ -315,7 +326,7 @@
             </div>
              <div class="step" data-step-no="break down race">
                 <div class="step-text">
-                    And while gun suicide is considered a public health crisis, gun violence is framed as a crisis of criminality.
+                    But while gun suicide is considered a public health crisis, gun violence is framed as a crisis of criminality.
                 </div>
             </div>
             <div class="step" data-step-no="us incarceration intro">
@@ -324,30 +335,35 @@
                 </div>
             </div>
             <div class="step" data-step-no="us incarceration">
-                <div class="step-text">
-                  The US has the highest incarceration rate in the world, with 698 people incarcerated for every 100,000 residents. That’s 1.6 times the rate of Brazil, 6 times the  rate of Canada, and 15 times the rate of Japan.
+                <div @mouseover="citation = 'US has'" @mouseleave="citation = null" class="step-text">
+                  The US has the highest incarceration rate in the world, with 698 people incarcerated for every 100,000 residents. That’s 1.6 times the rate of Brazil, 6 times the  rate of Canada, and 15 times the rate of Japan.<sup>2</sup>
+                  <p class="sub-text citation" v-show="citation == 'US has'">Wagner and Sawyer, “States of Incarceration: The Global Context 2018.” Prison Policy Initiative.</p>
                 </div>
             </div>
             <div class="step" data-step-no="homicide and incarceration">
-                <div class="step-text">
-                  The vast differences in the rate of gun homicides are mirrored by the racial inequities of incarceration in the US. While young Black men are most likely to be victims of gun homicide in the US, they are also most likely to be incarcerated.
+                <div  @mouseover="citation = 'vast differences'" @mouseleave="citation = null" class="step-text">
+                  The vast differences in the rate of gun homicides are mirrored by the racial inequities of incarceration in the US. While young Black men are most likely to be victims of gun homicide, they are also most likely to be incarcerated.<sup>3</sup>
+                  <p class="sub-text citation" v-show="citation == 'vast differences'">Bureau of Justice Statistics. Imprisonment rate of sentenced state and federal prisoners per 100,000 U.S. residents, by sex, race, Hispanic origin, and age, 2016.</p>
                 </div>
             </div>
             <div class="step" data-step-no="arrested">
-                <div class="step-text">
-                    More broadly, Black Americans are most likely to be arrested for weapons possession, despite research showing that gun ownership is higher amongst White Americans.
+                <div  @mouseover="citation = 'more broadly'" @mouseleave="citation = null" class="step-text">
+                    More broadly, Black Americans are most likely to be arrested for weapons possession, despite research showing that gun ownership is higher among White Americans.<sup>4</sup>
+                    <p class="sub-text citation" v-show="citation == 'more broadly'">Graph source:  Snyder et al. Bureau of Justice Statistics.  Arrest in the United States, 1980-2014.</p>
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="jailed">
-                <div class="step-text">
-                    Black Americans are also overwhelmingly most likely to be jailed.
+                <div @mouseover="citation = 'more broadly'" @mouseleave="citation = null" class="step-text">
+                    Black Americans are also overwhelmingly more likely to be jailed.<sup>5</sup>
+                    <p class="sub-text citation" v-show="citation == 'more broadly'">Graph source: Bureau of Justice Statistics, Annual Survey of Jails, 1990-2004 and 2006-2018; and Census of Jail Inmates, 2005.</p>
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="still disparate">
-                <div class="step-text">
-                    And though overall incarceration rates have seen recent declines, rates remain higher for non-White Americans, and in particular for men of color. 
+                <div @mouseover="citation = 'incarceration rates'" @mouseleave="citation = null" class="step-text">
+                    And though overall incarceration rates have seen recent declines, rates remain higher for non-White Americans, and in particular for men of color.<sup>3</sup>
+                    <p class="sub-text citation" v-show="citation == 'incarceration rates'">Bureau of Justice Statistics. Imprisonment rate of sentenced state and federal prisoners per 100,000 U.S. residents, by sex, race, Hispanic origin, and age, 2016.</p>
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
@@ -358,12 +374,13 @@
             </div>
             <div class="step" data-step-no="entire response">
                 <div class="step-text">
-                    And these theories have in turn supported law enforcement tactics treat entire communities as responsible for high rates of violence, such as heavier policing in communities of color as well as racist law enforcement programs such as Stop and Frisk. 
+                    And these theories have in turn supported law enforcement tactics that treat entire communities as responsible for high rates of violence, such as heavier policing in communities of color as well as racist programs such as Stop and Frisk. 
                 </div>
             </div>
             <div class="step" data-step-no="perpetrators">
-                <div class="step-text">
-                    Yet data shows that the perpetrators of gun violence often constitute less than 1% of the population in major cities in the US. 
+                <div @mouseover="citation = 'perpetrators'" @mouseleave="citation = null" class="step-text">
+                    Yet data show that the perpetrators of gun violence often constitute less than 1% of the population in major cities in the US.<sup>6</sup>
+                    <p class="sub-text citation" v-show="citation == 'perpetrators'">Source: Giffords Law Center</p>
                 </div>
             </div>
             <div class="step" data-step-no="connected">
@@ -372,8 +389,13 @@
                 </div>
             </div>
             <div class="step" data-step-no="programs" data-substep="programs-static">
-                <div class="step-text">
-                    In response, many cities across the US have implemented local intervention strategies that work to humanize rather than criminalize those at the center of gun violence. 
+                <div @mouseover="citation = 'local response'" @mouseleave="citation = null" class="step-text">
+                    In response, many cities across the US have implemented local intervention strategies that work to humanize rather than criminalize those at the center of gun violence.<sup>1,7</sup>
+                    <div class="sub-text citation" v-show="citation == 'local response'">
+                        <p>Map Sources:</p>
+                        <p>Underlying Cause of Death 2018, Firearm Related. CDC Wonder</p>
+                        <p>Program data compiled from local organizations and networks across the United States including The Havi, Cure Violence, Advance Peace</p>
+                    </div>
                     <p class="sub-text">Hover on a location to learn more about each program or on a county to see the gun homicide rate between 2010-2018.</p>
                 </div>
             </div>
@@ -396,12 +418,12 @@
             </div>
             <div class="step" data-step-no="diff solutions">
                 <div class="step-text">
-                    Some work independently to de-escalate potentially lethal situations while others work in partnership with law enforcement to build community trust. Others yet work out of hospitals, reaching individuals after they have been injured by a firearm to end cycles of retaliation.
+                    Some work independently to de-escalate potentially lethal situations while others work in partnership with law enforcement to build community trust. Others work out of hospitals, reaching individuals after they have been injured by a firearm to end cycles of retaliation.
                 </div>
             </div>
             <div class="step" data-step-no="common thread">
                 <div class="step-text">
-                    The common thread amongst these strategies is that all rely on the expertise of community members and individuals who have deep personal experiences with cyclical gun violence. 
+                    The common thread among these strategies is that all rely on the expertise of community members and individuals who have deep personal experiences with cyclical gun violence. 
                 </div>
             </div>
             <!-- <div class="step" data-step-no="local strategies">
@@ -411,44 +433,31 @@
             </div> -->
 
             <div class="step" data-step-no="Richmond">
-                <div class="step-text">
-                    And the results provide reason for consideration. Richmond, CA, at its peak labeled as one of the most deadly cities in the US, saw gun homicides decrease by over 40% after launching its local gun violence reduction program, the Office of Neighborhood Safety, in 2007. 
+                <div @mouseover="citation = 'richmond hom'" @mouseleave="citation = null" class="step-text">
+                    And the results provide reason for consideration. Richmond, CA, at its peak labeled as one of the most deadly cities in the US, saw gun homicides decrease by over 40% after launching its local gun violence reduction program, the Office of Neighborhood Safety, in 2007.<sup>8</sup> 
+                    <p class="sub-text citation" v-show="citation == 'richmond hom'">Source: City of Richmond, Police Department</p>
                     <p class="sub-text">Interact with this graph by toggling the legend items or hovering on data points</p>
                 </div>
             </div>
             <div class="step" data-step-no="Richmond2">
-                <div class="step-text">
-                    Non-fatal shootings also fell significantly after the program was adopted.
+                <div @mouseover="citation = 'richmond shoot'" @mouseleave="citation = null" class="step-text">
+                    Non-fatal shootings also fell significantly after the program was adopted.<sup>8</sup> 
+                    <p class="sub-text citation" v-show="citation == 'richmond shoot'">Source: City of Richmond, Police Department</p>                
                 </div>
             </div>
-            <!-- <div class="step" data-step-no="Chicago">
-                <div class="step-text">
-                    In Chicago, IL, the Ceasefire program decreased shootings by 38% and killings by 29% in two neighborhoods with some of the city’s highest gun violence rates.
-                </div>
-            </div> -->
-            <!-- <div class="step" data-step-no="addressing">
-                <div class="step-text">
-                    Addressing the most pervasive forms of gun violence requires strategies that address the unique drivers of gun violence at the community level, and finding ways to address gun violence without further contributing to systems of mass incarceration and racial inequity in the US. 
-                </div>
-            </div> -->
             <div class="step" data-step-no="addressing">
                 <div class="step-text">
-                    These programs, as part of a larger integrated set of gun violence reduction strategies, show that local, community-based gun violence reduction programs can contribute meaningful solutions to America’s gun crisis, and particularly the impacts of gun violence on communities of color, without detracting from much needed policy level gun reform. 
+                    These programs show that local, community-based gun violence reduction programs can contribute meaningful solutions to America’s gun crisis. As part of a larger integrated set of strategies, local gun violence intervention can lessen the impacts of gun violence on communities of color, without detracting from much needed policy level gun reform. 
                 </div>
             </div>
-            <!-- <div class="step" data-step-no="">
-                <div class="step-text">
-                    The two largest and least visible contributors to the annual gun death toll in the US – gun suicides and daily individual gun homicides – may have different root causes, but successful approaches that prevent imminent gun injuries of either nature rely on the same tactic: deescalating potentially lethal situations by reaching individuals most likely to harm or be harmed.
-                </div>
-            </div> -->
             <div class="step" data-step-no="media">
                 <div class="step-text">
-                    Recent movements including March For Our Lives and Black Lives Matters have done powerful work to bring mass shootings and police shootings to the forefront of media and policy discussionns. 
+                    Recent movements including March For Our Lives and Black Lives Matter have done powerful work to bring mass shootings and police shootings to the forefront of media and policy discussions. 
                 </div>
             </div>
             <div class="step" data-step-no="media2">
                 <div class="step-text">
-                    So, what will it take to elevate daily gun violence to this national discourse? And how do we reckon with a gun violence crisis that disproportionately kills and criminalizes black and brown youth? 
+                    What will it take to elevate daily gun violence to this national discourse? And how do we reckon with a gun violence crisis that disproportionately kills and criminalizes Black and Brown youth? 
                     <p class="sub-text">Explore the resources below to learn more about this work being undertaken by cities and organizations around the country.</p>
                 </div>
             </div>
@@ -463,26 +472,28 @@
             <div class="resource-box">
                 <div class="resource-group">Gun violence reduction models</div>
                 <div class="resource-links">
-                    <p><a href="https://nnscommunities.org/strategies/group-violence-intervention/">Group Violence Intervention</a></p>
-                    <p><a href="https://www.advancepeace.org/">Advance Peace</a></p>
-                    <p><a href="https://www.thehavi.org/">Hospital Based Violence Intervention Programs</a></p>
-                    <p><a href="https://cvg.org/">Cure Violence</a></p>
+                    <p><a href="https://nnscommunities.org/strategies/group-violence-intervention/" target="_blank">Group Violence Intervention</a></p>
+                    <p><a href="https://www.advancepeace.org/" target="_blank">Advance Peace</a></p>
+                    <p><a href="https://www.thehavi.org/" target="_blank">Hospital Based Violence Intervention Programs</a></p>
+                    <p><a href="https://cvg.org/" target="_blank">Cure Violence</a></p>
                 </div>
             </div>
             <div class="resource-box">
                 <div class="resource-group">Policy & Advocacy</div>
                 <div class="resource-links">
-                    <p><a href="https://giffords.org/issue/urban-gun-violence/">Giffords Law Center</a></p>
-                    <p><a href="https://everytownresearch.org/gun-violence-cities/">Everytown for Gun Safety</a></p>
-                    <p><a href="https://www.vera.org/">Vera Institute of Justice</a></p>
+                    <p><a href="https://giffords.org/issue/urban-gun-violence/" target="_blank">Urban Gun Violence,<br>Giffords Law Center</a></p>
+                    <p><a href="https://lawcenter.giffords.org/gun-laws/policy-areas/other-laws-policies/intervention-strategies/" target="_blank">Intervention Strategies,<br>Giffords Law Center</a></p>
+                    <p><a href="https://everytownresearch.org/gun-violence-cities/" target="_blank">Gun Violence in Cities,<br>Everytown for Gun Safety</a></p>
+                    <p><a href="https://preventfirearmsuicide.efsgv.org/" target="_blank">Prevent Gun Suicide,<br>EFSGV</a></p>
+                    <p><a href="https://www.vera.org/">Criminal Justice Reform,<br>Vera Institute of Justice</a></p>
                 </div>
             </div>
             <div class="resource-box">
                 <div class="resource-group">Media & Data Visualization</div>
                 <div class="resource-links">
-                    <p><a href="https://www.theguardian.com/us-news/series/guns-and-lies">Guns and Lies, The Guardian</a></p>
-                    <p><a href="https://fivethirtyeight.com/features/gun-deaths/">Gun Deaths in America, FiveThirtyEight</a></p>
-                    <p><a href="https://www.washingtonpost.com/graphics/2018/investigations/black-homicides-arrests/">An Unequal Justice, Washington Post</a></p>
+                    <p><a href="https://www.theguardian.com/us-news/series/guns-and-lies" target="_blank">Guns and Lies,<br>The Guardian</a></p>
+                    <p><a href="https://fivethirtyeight.com/features/gun-deaths/" target="_blank">Gun Deaths in America,<br>FiveThirtyEight</a></p>
+                    <p><a href="https://www.washingtonpost.com/graphics/2018/investigations/black-homicides-arrests/" target="_blank">An Unequal Justice,<br>Washington Post</a></p>
                 </div>
             </div>
         </div>
@@ -494,17 +505,19 @@
               <p class="footer-text"><a id="top-btn" href="#page-title">Back to top</a></p>
           </div>
           <div class="link-container">
-              <a href="">Background & Methodology</a>
+              <a href="https://github.com/marisaruizasari/thesis/tree/master/documentation" target="_blank">Background & Methodology</a>
           </div>
           <div class="link-container">
-               <a href="">Marisa Ruiz Asari</a>
+               <a href="https://www.linkedin.com/in/marisaasari/" target="_blank">Marisa Ruiz Asari</a>
           </div>
       </div>
     </footer>
+    </div>
   </div>
 </template>
 
 <script>
+
 
 import heroImg from '~/static/hero2.png'
 import navBar from '~/components/navBar.vue'
@@ -541,6 +554,7 @@ export default {
   },
   data() {
     return {
+      citation: null,
       scrollDirection: 'down',
       currStep: '1',
       subStep: null,
@@ -594,6 +608,22 @@ export default {
         }
       }
     }
+  },
+  head () {
+    return {
+      title: 'Weapons of Mass Injustice',
+    }
+  },
+  mounted() {
+   
+    if (screen.width <= 768) {
+        console.log(screen.width)
+        let mobileMessage = document.querySelector('#mobile-background')
+        mobileMessage.style.visibility = 'visible'
+        let desktopContent = document.querySelector('#desktop')
+        desktopContent.style.display = 'none'
+    }
+
   },
   watch: {
       currStep(newValue) {

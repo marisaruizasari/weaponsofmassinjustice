@@ -9843,7 +9843,7 @@
 	<text transform="matrix(1 0 0 1 113.9378 87.1494)" class="c0" style="font-family:'Merriweather-Regular'; font-size:100px;">Japan, 48 </text>
 	<text transform="matrix(1 0 0 1 234.9378 230.1494)" class="c2" style="font-family:'Merriweather-Regular'; font-size:100px;">Canada, 114 </text>
 	<text transform="matrix(1 0 0 1 576.9378 386.1494)" class="c1" style="font-family:'Merriweather-Regular'; font-size:100px;">Brazil, 325 </text>
-	<text transform="matrix(1 0 0 1 1083.9377 540.1494)" class="c3" style="font-family:'Merriweather-Regular'; font-size:100px;">US, 628</text>
+	<text transform="matrix(1 0 0 1 1083.9377 540.1494)" class="c3" style="font-family:'Merriweather-Regular'; font-size:100px;">US, 698</text>
 	<text transform="matrix(1 0 0 1 3989.9385 852.1494)" class="c5" style="font-family:'Merriweather-Regular'; font-size:100px;">US - Black men all ages, 2,417</text>
 	<text transform="matrix(1 0 0 1 7102.1606 850.1494)" class="c6" style="font-family:'Merriweather-Regular'; font-size:100px;">US - Black men ages 35-39, 5,435</text>
 </g>

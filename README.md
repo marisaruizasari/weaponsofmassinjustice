@@ -1,4 +1,4 @@
-# marisa-asari-thesis
+# weapons-of-mass-injustice
 
 > MSDV thesis work 2020
 
